@@ -7,6 +7,7 @@ class ListBoardComponent extends Component {
         this.state = {
             boards: [],
         };
+        this.createBoard = this.createBoard.bind(this);
     }
 
     componentDidMount() {
@@ -14,11 +15,19 @@ class ListBoardComponent extends Component {
             this.setState({ boards: res.data });
         });
     }
-
+    createBoard() {
+        this.props.history.push('/create-board/');
+    }
     render() {
         return (
             <div>
                 <h2 className="text-center">Boards List</h2>
+                <div className="">
+                    <button className="btn btn-primary" onClick={this.createBoard}>
+                        {' '}
+                        글 작성
+                    </button>
+                </div>
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
