@@ -18,6 +18,9 @@ class ListBoardComponent extends Component {
     createBoard() {
         this.props.history.push('/create-board/');
     }
+    readBoard(no) {
+        this.props.history.push(`/read-board/${no}`);
+    }
     render() {
         return (
             <div>
@@ -45,7 +48,9 @@ class ListBoardComponent extends Component {
                             {this.state.boards.map((board) => (
                                 <tr key={board.no}>
                                     <td>{board.no}</td>
-                                    <td>{board.title}</td>
+                                    <td>
+                                        <a onClick={() => this.readBoard(board.no)}>{board.title} </a>
+                                    </td>
                                     <td>{board.memberNo}</td>
                                     <td>{board.createdTime}</td>
                                     <td>{board.updatedTime}</td>
