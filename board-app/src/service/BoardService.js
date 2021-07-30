@@ -11,6 +11,9 @@ class BoardService {
     getOneBoard(no) {
         return axios.get(BOARD_API_BASE_URL + '/' + no);
     }
+    updateBoard(no, board) {
+        return axios.put(BOARD_API_BASE_URL + '/' + no, board);
+    }
 }
 
 export default new BoardService();

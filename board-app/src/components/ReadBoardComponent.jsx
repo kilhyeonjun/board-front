@@ -44,6 +44,10 @@ class ReadBoardComponent extends Component {
     goToList() {
         this.props.history.push('/board');
     }
+    goToUpdate = (event) => {
+        event.preventDefault();
+        this.props.history.push(`/create-board/${this.state.no}`);
+    };
 
     render() {
         return (
@@ -67,6 +71,12 @@ class ReadBoardComponent extends Component {
                         {this.returnDate(this.state.board.createdTime, this.state.board.updatedTime)}# 7.
                         <button className="btn btn-primary" onClick={this.goToList.bind(this)} style={{ marginLeft: '10px' }}>
                             글 목록으로 이동
+                        </button>
+                        <button className="btn btn-info" onClick={this.goToUpdate} style={{ marginLeft: '10px' }}>
+                            글 수정
+                        </button>
+                        <button className="btn btn-danger" onClick={() => this.deleteView()} style={{ marginLeft: '10px' }}>
+                            글 삭제
                         </button>
                     </div>
                 </div>

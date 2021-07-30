@@ -16,7 +16,7 @@ function App() {
                     <Switch>
                         <Route path="/" exact component={ListBoardComponent}></Route>
                         <Route path="/board" exact component={ListBoardComponent}></Route>
-                        <Route path="/create-board" component={CreateBoardComponent}></Route>
+                        <Route path="/create-board/:no" component={CreateBoardComponent}></Route>
                         <Route path="/read-board/:no" component={ReadBoardComponent}></Route>
                     </Switch>
                 </div>

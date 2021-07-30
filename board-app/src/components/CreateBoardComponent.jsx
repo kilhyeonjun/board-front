@@ -6,6 +6,7 @@ class CreateBoardComponent extends Component {
         super(props);
 
         this.state = {
+            no: this.props.match.params.no,
             type: '',
             title: '',
             contents: '',
@@ -43,14 +44,45 @@ class CreateBoardComponent extends Component {
             memberNo: this.state.memberNo,
         };
         console.log('board => ' + JSON.stringify(board));
-        BoardService.createBoard(board).then((res) => {
-            this.props.history.push('/board');
-        });
+        if (this.state.no === '_create') {
+            BoardService.createBoard(board).then((res) => {
+                this.props.history.push('/board');
+            });
+        } else {
+            BoardService.updateBoard(this.state.no, board).then((res) => {
+                this.props.history.push('/board');
+            });
+        }
     };
 
     cancel() {
         this.props.history.push('/board');
     }
+    getTitle() {
+        if (this.state.no === '_create') {
+            return <h3 className="text-center">새글을 작성해주세요</h3>;
+        } else {
+            return <h3 className="text-center">{this.state.no}글을 수정 합니다.</h3>;
+        }
+    }
+    componentDidMount() {
+        if (this.state.no === '_create') {
+            return;
+        } else {
+            BoardService.getOneBoard(this.state.no).then((res) => {
+                let board = res.data;
+                console.log('board => ' + JSON.stringify(board));
+
+                this.setState({
+                    type: board.type,
+                    title: board.title,
+                    contents: board.contents,
+                    memberNo: board.memberNo,
+                });
+            });
+        }
+    }
+
     render() {
         return (
             <div>
