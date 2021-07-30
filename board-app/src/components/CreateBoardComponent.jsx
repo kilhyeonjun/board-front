@@ -63,6 +63,7 @@ class CreateBoardComponent extends Component {
                                     <div className="form-group">
                                         <label> Type </label>
                                         <select placeholder="type" name="type" className="form-control" value={this.state.type} onChange={this.changeTypeHandler}>
+                                            <option value="0"></option>
                                             <option value="1">자유게시판</option>
                                             <option value="2">질문과 답변</option>
                                         </select>
