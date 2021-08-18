@@ -14,6 +14,9 @@ class BoardService {
     updateBoard(no, board) {
         return axios.put(BOARD_API_BASE_URL + '/' + no, board);
     }
+    deleteBoard(no) {
+        return axios.delete(BOARD_API_BASE_URL + '/' + no);
+    }
 }
 
 export default new BoardService();

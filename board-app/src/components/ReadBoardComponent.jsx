@@ -48,6 +48,18 @@ class ReadBoardComponent extends Component {
         event.preventDefault();
         this.props.history.push(`/create-board/${this.state.no}`);
     };
+    deleteView = async function () {
+        if (window.confirm('정말로 글을 삭제하시겠습니까?\n삭제된 글은 복구 할 수 없습니다.')) {
+            BoardService.deleteBoard(this.state.no).then((res) => {
+                console.log('delete result => ' + JSON.stringify(res));
+                if (res.status == 200) {
+                    this.props.history.push('/board');
+                } else {
+                    alert('글 삭제가 실패했습니다.');
+                }
+            });
+        }
+    };
 
     render() {
         return (
